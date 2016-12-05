@@ -1,0 +1,3 @@
+Assigns a budget to every customer account and substracts already made orders from this budget
+
+When budget is empty or order price is above remaining budget an alert is given and the entire order will be blocked
