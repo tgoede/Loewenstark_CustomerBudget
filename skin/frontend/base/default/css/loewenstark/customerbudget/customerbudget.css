@@ -1,0 +1,53 @@
+.budget-bar-container {
+    position: relative;
+    float: right;
+    width: 250px;
+    top: -50px;
+    padding: 0px 10px 5px;
+    border: 1px solid silver;
+    border-radius: 2px;
+    background: #FFF;
+}
+
+.budget-bar {
+    float:left;
+    width:100%;
+    background: #3399cc;
+}
+
+.budget-bar-spent {
+    float: right;
+    height: 20px;
+    background: #FFF;
+    border: none;
+    text-align: right;
+    line-height: 20px;;
+}
+
+.budget-bar.error {
+    border: 1px solid #df280a;
+    
+}
+
+.budget-bar.warning {
+    border: 1px solid #e26703;
+}
+
+.budget-bar.success {
+    border: 1px solid #3399cc;
+}
+
+.budget-value {
+    font-weight: 600;
+}
+.budget-value.error {
+    color: #df280a;   
+}
+
+.budget-value.warning {
+    color: #e26703;
+}
+
+.budget-value.success {
+    color: #636363;
+}

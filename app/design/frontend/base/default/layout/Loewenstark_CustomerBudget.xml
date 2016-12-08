@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addCss">
+                <file>css/loewenstark/customerbudget/customerbudget.css</file>
+            </action>
+        </reference>
+        <reference name="top.container">
+            <block type="customerbudget/header" name="customer.budget" template="page/html/header/customerbudget.phtml" />
+        </reference>
+    </default>
+</layout>

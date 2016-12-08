@@ -1,0 +1,4 @@
+<div class="budget-bar-container" style="display:<?php echo $this->showBudget(); ?>;">
+    <div class="budget-bar-header"><?php echo $this->__('Your Budget'); ?></div>
+    <div class="budget-bar <?php echo $this->getBudgetStatus(); ?>"><div class="budget-bar-spent" style="width:<?php echo $this->getRelative(); ?>%;"></div></div><div class="budget-value <?php echo $this->getBudgetStatus(); ?>"><?php echo $this->getAbsolute(); ?></div>
+</div>

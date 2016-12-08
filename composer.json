@@ -1,3 +1,10 @@
 {
-    "name": "tgoede"
+   "name": "loewenstark/customerbudget",
+   "license": ["GPL-3.0"],
+   "type": "magento-module",
+   "description": "assign budget to customer account",
+   "homepage": "https://github.com/mklooss/Loewenstark_InvalidCache",
+   "require": {
+      "magento-hackathon/magento-composer-installer": "*"
+   }
 }

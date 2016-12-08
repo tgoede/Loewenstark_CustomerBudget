@@ -1,1 +1,5 @@
-
+app/etc/modules/Loewenstark_CustomerBudget.xml	app/etc/modules/Loewenstark_CustomerBudget.xml
+app/code/local/Loewenstark/CustomerBudget	app/code/local/Loewenstark/CustomerBudget
+app/design/frontend/base/default/layout/Loewenstark_CustomerBudget.xml app/design/frontend/base/default/layout/Loewenstark_CustomerBudget.xml
+app/design/frontend/base/default/template/page/html/header/customerbudget.phtml app/design/frontend/base/default/template/page/html/header/customerbudget.phtml
+skin/frontend/base/default/css/loewenstark/customerbudget/customerbudget.css skin/frontend/base/default/css/loewenstark/customerbudget/customerbudget.css
