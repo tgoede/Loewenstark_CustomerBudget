@@ -8,14 +8,16 @@
 
 class Loewenstark_CustomerBudget_Block_Header extends Mage_Page_Block_Html_Header
 {
-    public function __construct(array $args = array()) {
-        //parent::__construct($args);
-        
+    public $helper;
+    
+    public function __construct()
+    {
+        $this->helper = new Loewenstark_CustomerBudget_Helper_Data();
     }
     
     public function getRelative()
     {
-        if($this->getCustomer()->getId()) {
+        if($this->getCustomer()->getId() && $this->helper->isActive()) {
             if ($this->getCustomerBudget()) {
                 $rel = (int)($this->getNewBudgetSpent()*100/$this->getCustomerBudget());
                 return ($rel >= 100) ? 100 : $rel;
@@ -29,7 +31,7 @@ class Loewenstark_CustomerBudget_Block_Header extends Mage_Page_Block_Html_Heade
     
     public function getBudgetStatus()
     {
-        if($this->getCustomer()->getId()) {
+        if($this->getCustomer()->getId() && $this->helper->isActive()) {
                 if ($this->getCustomerBudget()) {
                     if(($this->getCustomerBudget() - $this->getNewBudgetSpent()) < 0) {
                         return "error";      
@@ -46,7 +48,7 @@ class Loewenstark_CustomerBudget_Block_Header extends Mage_Page_Block_Html_Heade
     
     public function getAbsolute()
     {
-        if($this->getCustomer()->getId()) {
+        if($this->getCustomer()->getId() && $this->helper->isActive()) {
             
             if(($this->getCustomerBudget() - $this->getNewBudgetSpent()) < 0) {
                 return (float)($this->getCustomerBudget() - $this->getNewBudgetSpent()) . $this->getCurrencySymbol();
@@ -58,7 +60,7 @@ class Loewenstark_CustomerBudget_Block_Header extends Mage_Page_Block_Html_Heade
     
     public function showBudget()
     {
-        if($this->getCustomer()->getId()) {
+        if($this->getCustomer()->getId() && $this->helper->isActive()) {
             return "block";
         } else {
             return "none";

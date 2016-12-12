@@ -13,6 +13,13 @@
  */
 class Loewenstark_CustomerBudget_Model_Observer extends Mage_Customer_Model_Observer {
     
+    public $helper;
+    
+    public function __construct()
+    {
+        $this->helper = new Loewenstark_CustomerBudget_Helper_Data();
+    }
+    
     /**
      * 
      * @param Varien_Event_Observer $observer
@@ -120,7 +127,7 @@ class Loewenstark_CustomerBudget_Model_Observer extends Mage_Customer_Model_Obse
 
         $customer = $this->getCustomer($order);
 
-        if ($customer) {
+        if ($customer->getId() && $this->helper->isActive()) {
             $customerBudgetData = array();
             $this->getCustomerBudgetData($customerBudgetData, $customer, $cart);
 
@@ -147,8 +154,8 @@ class Loewenstark_CustomerBudget_Model_Observer extends Mage_Customer_Model_Obse
          * get customer data
          */
         $customer = $this->getCustomer($cart);
-
-        if ($customer) {
+ 
+        if ($customer->getId() && $this->helper->isActive()) {
             /**
              * get customer budget data
              */
@@ -178,7 +185,7 @@ class Loewenstark_CustomerBudget_Model_Observer extends Mage_Customer_Model_Obse
          */
         $customer = $this->getCustomer($cart);
 
-        if ($customer) {
+        if ($customer->getId() && $this->helper->isActive()) {
             /**
              * get customer budget data
              */
@@ -198,6 +205,7 @@ class Loewenstark_CustomerBudget_Model_Observer extends Mage_Customer_Model_Obse
      * @return boolean
      */
     private function handleCustomerBudgetMessages(&$customerBudgetData, &$cart, $action, &$controller = null) {
+        
         if (($customerBudgetData['newBudgetRemain']) < 0) {
             Mage::getSingleton('core/session')->getMessages(true);
             $message = Mage::getModel('core/message_error', 'You\'ve exceeded your budget by ' . $customerBudgetData['newBudgetRemain'] . $this->getCurrencySymbol());
@@ -206,6 +214,9 @@ class Loewenstark_CustomerBudget_Model_Observer extends Mage_Customer_Model_Obse
             $cart->setHasError(true);
             
             if($controller){
+                $product = Mage::getModel('catalog/product')
+                ->load(Mage::app()->getRequest()->getParam('product', 0));
+                
                 $controller->getRequest()->setParam('return_url', $product->getProductUrl());
             }
             return false;
@@ -254,7 +265,7 @@ class Loewenstark_CustomerBudget_Model_Observer extends Mage_Customer_Model_Obse
             $price = $product->getPrice();
         }
 
-        if ($customer) {
+        if ($customer->getId()) {
             $customerBudgetData['customerBudget'] = $this->getCustomerBudget($customer);
 
             $customerBudgetData['currentBudgetSpent'] = $this->getCustomerBudgetSpent($customer);
@@ -296,8 +307,8 @@ class Loewenstark_CustomerBudget_Model_Observer extends Mage_Customer_Model_Obse
      * @param type $entity
      * @return type
      */
-    private function getCustomer($entity) {
-        $customerId = $entity->getCustomerId(); //evtl. Id
+    private function getCustomer($customer) {
+        $customerId = $customer->getCustomerId(); //evtl. Id
         return Mage::getModel('customer/customer')->load($customerId);
     }
 

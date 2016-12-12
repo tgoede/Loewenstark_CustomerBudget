@@ -89,6 +89,25 @@
                 </observers>
             </eav_collection_abstract_load_before>
         </events>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <customer>
+                                            <title>Customer Budget</title>
+                                        </customer>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
     </adminhtml>   
     <global>
         <resources>

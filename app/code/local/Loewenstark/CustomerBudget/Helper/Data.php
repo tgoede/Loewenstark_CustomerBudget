@@ -8,5 +8,8 @@
 
 class Loewenstark_CustomerBudget_Helper_Data extends Mage_Core_Helper_Abstract
 {
-    
+    public function isActive()
+    {
+        return (bool)Mage::getStoreConfigFlag("customer/customerbudget/active");
+    }
 }
